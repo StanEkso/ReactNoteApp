@@ -5,6 +5,27 @@
       "email": "user1@gmail.com",
       "password": "1234",
       "createdAt": "2022-11-04T14:36:10.980Z"
+    },
+    {
+      "email": "email@example.com",
+      "password": "12345678",
+      "name": "Stanislav",
+      "createdAt": "2022-11-05T16:54:12.598Z",
+      "id": 2
+    },
+    {
+      "email": "stasborisov2004@gmail.com",
+      "password": "12345678",
+      "name": "Stanislav",
+      "createdAt": "2022-11-05T16:55:28.442Z",
+      "id": 3
+    },
+    {
+      "email": "eksodev@gmail.com45",
+      "password": "12345678",
+      "name": "Stanislav",
+      "createdAt": "2022-11-05T16:57:49.560Z",
+      "id": 4
     }
   ],
   "notes": [

@@ -1,17 +1,42 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AuthContextProvider from "./components/authContextProvider/authContextProvider";
 import Layout from "./components/layout/Layout";
+import RootLayout from "./components/layout/RootLayout";
+import UnathorizedLayout from "./components/layout/UnathorizedLayout";
+import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import NotFoundPage, { NotFoundRedirect } from "./pages/404";
+import AboutPage from "./pages/about/page";
+import LoginPage from "./pages/login/page";
+import RegisterPage from "./pages/register/page";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <PrivateRoute>
+        <Layout />
+      </PrivateRoute>
+    ),
     errorElement: <NotFoundRedirect />,
     children: [
       {
         path: "/",
-        element: <p>Main</p>,
+        element: <AboutPage />,
         index: true,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <UnathorizedLayout />,
+    children: [
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/register",
+        element: <RegisterPage />,
       },
     ],
   },
@@ -21,7 +46,13 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthContextProvider>
+      <RootLayout>
+        <RouterProvider router={router} />
+      </RootLayout>
+    </AuthContextProvider>
+  );
 }
 
 export default App;
