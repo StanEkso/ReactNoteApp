@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 export function useForm() {
   const [payload, setPayload] = useState<Record<string, string>>({});
   const changeHandler = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       setPayload((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     },
     [setPayload]

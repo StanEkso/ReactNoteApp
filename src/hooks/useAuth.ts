@@ -10,17 +10,16 @@ export function useAuth(): AuthUtils {
   const utils: AuthUtils = useMemo(
     () => ({
       user,
-      login: async (paramUser) => {
+      login: (paramUser) => {
         return loginUser(paramUser).then((user) => {
-          localStorage.setItem("user", JSON.stringify(user));
           setUser(user);
+          localStorage.setItem("user", JSON.stringify(user));
         });
       },
       register: (paramUser) => {
         return createUser(paramUser).then((user) => {
-          console.log("Setting in localstorage", user);
-          localStorage.setItem("user", JSON.stringify(user));
           setUser(user);
+          localStorage.setItem("user", JSON.stringify(user));
         });
       },
       logout: () => {
@@ -28,7 +27,7 @@ export function useAuth(): AuthUtils {
         setUser(null);
       },
     }),
-    [user]
+    [user, setUser]
   );
   return utils;
 }

@@ -13,7 +13,10 @@ const LoginPage = () => {
       email: payload.email,
       password: payload.password,
     })
-      .then(() => navigate("/"))
+      .then(() => {
+        console.log("THEN");
+        navigate("/");
+      })
       .catch((e) => {
         setError(e.message);
       });

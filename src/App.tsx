@@ -8,6 +8,8 @@ import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import NotFoundPage, { NotFoundRedirect } from "./pages/404";
 import AboutPage from "./pages/about/page";
 import LoginPage from "./pages/login/page";
+import CreateNote from "./pages/notes/create/page";
+import NotesPage from "./pages/notes/page";
 import RegisterPage from "./pages/register/page";
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
         path: "/",
         element: <AboutPage />,
         index: true,
+      },
+      {
+        path: "notes",
+        element: <NotesPage />,
+      },
+      {
+        path: "notes/create",
+        element: <CreateNote />,
       },
     ],
   },
