@@ -1,12 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { createNote } from "../../../api/notes";
+import { useAuthContext } from "../../../components/authContextProvider/authContextProvider";
 import { useForm } from "../../../hooks/useForm";
 
 const CreateNote = () => {
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
   const { payload, changeHandler } = useForm();
   const sumbitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(payload);
+    createNote({
+      title: payload.title,
+      body: payload.body,
+      userId: user?.id || 0,
+    }).then((note) => {
+      navigate("/notes/" + note.id);
+    });
   };
   return (
     <div className="flex flex-col gap-3">

@@ -10,6 +10,8 @@ import AboutPage from "./pages/about/page";
 import LoginPage from "./pages/login/page";
 import CreateNote from "./pages/notes/create/page";
 import NotesPage from "./pages/notes/page";
+import EditNotePage from "./pages/notes/[id]/edit/page";
+import NotePage, { loader as noteLoader } from "./pages/notes/[id]/page";
 import RegisterPage from "./pages/register/page";
 const router = createBrowserRouter([
   {
@@ -27,12 +29,28 @@ const router = createBrowserRouter([
         index: true,
       },
       {
-        path: "notes",
-        element: <NotesPage />,
-      },
-      {
-        path: "notes/create",
-        element: <CreateNote />,
+        path: "notes/",
+        errorElement: <NotFoundRedirect />,
+        children: [
+          {
+            path: "",
+            element: <NotesPage />,
+          },
+          {
+            path: "create/",
+            element: <CreateNote />,
+          },
+          {
+            path: ":id/edit/",
+            element: <EditNotePage />,
+            loader: noteLoader,
+          },
+          {
+            path: ":id/",
+            element: <NotePage />,
+            loader: noteLoader,
+          },
+        ],
       },
     ],
   },
