@@ -30,3 +30,14 @@ export const deleteNote = (id: number): Promise<Note> => {
     },
   }).then((r) => r.json());
 };
+
+export const updateNode = (dto: Note) => {
+  const { id, ...note } = dto;
+  return fetch(BASE_URL + "/notes/" + id, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(note),
+  }).then((r) => r.json());
+};
