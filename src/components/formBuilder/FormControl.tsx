@@ -15,6 +15,7 @@ const FormControl: FC<ControlProps> = ({
   name,
   onChange,
   value,
+  required,
 }) => {
   return (
     <>
@@ -22,19 +23,21 @@ const FormControl: FC<ControlProps> = ({
         <textarea
           name={name}
           placeholder={placeholder}
-          className="py-1 px-2 border-2 rounded-sm invalid:border-red-600"
+          className="py-1 px-2 border-2 rounded-sm "
           onChange={onChange}
+          required={required}
           value={value}
         ></textarea>
       )}
       {!customElement && (
         <input
+          required={required}
           type={type}
           name={name}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className="py-1 px-2 border-2 rounded-sm invalid:border-red-600"
+          className="py-1 px-2 border-2 rounded-sm "
         />
       )}
     </>

@@ -3,31 +3,29 @@ import { useForm } from "../../hooks/useForm";
 import { FormBuilderOptions } from "../../types/form";
 import FormControl from "./FormControl";
 
-const FormBuilder: FC<FormBuilderOptions> = ({
-  onSumbit,
-  errorElement,
-  controls,
-}) => {
+const FormBuilder: FC<FormBuilderOptions> = ({ onSumbit, controls }) => {
   const initialFormValue = useMemo(() => {
     return controls.reduce(
       (prev, cur) => ({
         ...prev,
-        [cur.name]: cur.defaultValue,
+        [cur.name]: cur.defaultValue || "",
       }),
       {}
     ) as Record<string, string>;
   }, [controls]);
-  const { changeHandler, payload } = useForm(initialFormValue);
+  const { changeHandler, payload, setError } = useForm(initialFormValue);
   const handleSumbit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
-      onSumbit(payload);
+      onSumbit(payload).catch((e) => setError(e));
     },
-    [onSumbit, payload]
+    [onSumbit, payload, setError]
   );
   return (
-    <form action="" className="grid gap-1 mx-auto" onSubmit={handleSumbit}>
-      {payload.error && errorElement}
+    <form action="" className="grid gap-1 mx-4" onSubmit={handleSumbit}>
+      {payload.error && (
+        <div className="border-2 border-red-600 py-1 px-2">{payload.error}</div>
+      )}
       {controls.map((control) => (
         <FormControl
           onChange={changeHandler}

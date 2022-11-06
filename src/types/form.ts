@@ -4,10 +4,11 @@ export interface FormControlOptions {
   name: string;
   customElement?: "textarea";
   defaultValue?: string;
+  required?: boolean;
 }
 
 export interface FormBuilderOptions {
-  onSumbit: (payload: Record<string, string>) => void;
+  onSumbit: (payload: Record<string, string>) => Promise<void>;
   controls: FormControlOptions[];
   errorElement?: React.ReactNode | string | React.ReactNode[];
 }

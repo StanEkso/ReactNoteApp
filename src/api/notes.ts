@@ -2,7 +2,9 @@ import { Note } from "../types/note";
 import { BASE_URL } from "./constants";
 
 export const getNotes = (userId: number): Promise<Note[]> => {
-  return fetch(BASE_URL + `/users/${userId}/notes/`, {}).then((r) => r.json());
+  return fetch(
+    BASE_URL + `/users/${userId}/notes?_sort=createdAt&_order=desc`
+  ).then((r) => r.json());
 };
 export const createNote = (
   dto: Omit<Note, "id" | "createdAt">

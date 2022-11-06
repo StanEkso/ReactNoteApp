@@ -4,6 +4,7 @@ import AuthContextProvider from "./components/authContextProvider/authContextPro
 import Layout from "./components/layout/Layout";
 import RootLayout from "./components/layout/RootLayout";
 import UnathorizedLayout from "./components/layout/UnathorizedLayout";
+import NonAuthorizedOnly from "./components/privateRoute/NonAuthorizedOnly";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import NotFoundPage, { NotFoundRedirect } from "./pages/404";
 import AboutPage from "./pages/about/page";
@@ -56,7 +57,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <UnathorizedLayout />,
+    element: (
+      <NonAuthorizedOnly>
+        <UnathorizedLayout />
+      </NonAuthorizedOnly>
+    ),
     children: [
       {
         path: "/login",

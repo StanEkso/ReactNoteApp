@@ -9,7 +9,7 @@ import {
 import { getNoteById, updateNode } from "../../../../api/notes";
 import { useAuthContext } from "../../../../components/authContextProvider/authContextProvider";
 import FormBuilder from "../../../../components/formBuilder/FormBuilder";
-import NotePageSkeleton from "../../../../components/skeletons/NotePageSkeleton";
+import EditNoteSkeleton from "../../../../components/skeletons/EditNoteSkeleton";
 import { Note } from "../../../../types/note";
 import { NotFoundRedirect } from "../../../404";
 
@@ -18,7 +18,7 @@ const EditNotePage = () => {
   const { user } = useAuthContext();
   const fn = useLoaderData() as ReturnType<typeof loader>;
   const sumbitHandler = (note: Note) => (payload: Record<string, string>) => {
-    updateNode({ ...note, ...payload }).then(() => navigate(-1));
+    return updateNode({ ...note, ...payload }).then(() => navigate(-1));
   };
   return (
     <div className="flex flex-col gap-3">
@@ -28,7 +28,7 @@ const EditNotePage = () => {
       >
         {"<-"} Back
       </Link>
-      <Suspense fallback={<NotePageSkeleton />}>
+      <Suspense fallback={<EditNoteSkeleton />}>
         <Await resolve={fn(user?.id!)} errorElement={<NotFoundRedirect />}>
           {(note) => (
             <>
@@ -50,29 +50,6 @@ const EditNotePage = () => {
                   },
                 ]}
               />
-              {/* <form className="grid gap-1" onSubmit={sumbitHandler}>
-                <input
-                  type="text"
-                  className="py-1 px-2 border-2 rounded-sm invalid:border-red-600"
-                  name="title"
-                  placeholder="Title"
-                  defaultValue={note.title}
-                  onChange={changeHandler}
-                />
-                <textarea
-                  name="body"
-                  onChange={changeHandler}
-                  className="py-1 px-2 border-2 rounded-sm invalid:border-red-600"
-                  defaultValue={note.body}
-                  placeholder="Note body.."
-                ></textarea>
-                <button
-                  type="submit"
-                  className="bg-blue-600 text-white rounded-sm py-1"
-                >
-                  Create
-                </button>
-              </form> */}
             </>
           )}
         </Await>

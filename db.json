@@ -9,40 +9,40 @@
     },
     {
       "email": "email@example.com",
-      "password": "12345678",
-      "name": "Stanislav",
-      "createdAt": "2022-11-05T16:54:12.598Z",
+      "password": "123",
+      "name": "Abobus",
+      "createdAt": "2022-11-06T09:01:40.270Z",
       "id": 2
     },
     {
-      "email": "stasborisov2004@gmail.com",
+      "email": "micha@mail",
       "password": "12345678",
-      "name": "Stanislav",
-      "createdAt": "2022-11-05T16:55:28.442Z",
+      "name": "Michail",
+      "createdAt": "2022-11-06T09:05:20.716Z",
       "id": 3
-    },
-    {
-      "email": "eksodev@gmail.com45",
-      "password": "12345678",
-      "name": "Stanislav",
-      "createdAt": "2022-11-05T16:57:49.560Z",
-      "id": 4
     }
   ],
   "notes": [
     {
       "userId": 1,
-      "title": "Первая заметкаF{F{{F{F",
-      "body": "Тело первой заметки3213аапа",
+      "title": "First Note At Account",
+      "body": "First Note text",
       "createdAt": "2022-11-05T14:36:10.980Z",
       "id": 1
     },
     {
-      "title": "jjjjjjjjjjj",
-      "body": "12354546",
+      "title": "Second Note",
+      "body": "Second Note Text",
       "userId": 1,
       "createdAt": "2022-11-05T18:53:11.247Z",
       "id": 2
+    },
+    {
+      "title": "Third Note",
+      "body": "Third Note Text ",
+      "userId": 1,
+      "createdAt": "2022-11-06T08:51:38.287Z",
+      "id": 3
     }
   ]
 }
