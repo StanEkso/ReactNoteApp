@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { createNote } from "../../../api/notes";
+import { createNote } from "../../../api";
 import { useAuthContext } from "../../../components/authContextProvider/authContextProvider";
 import { useForm } from "../../../hooks/useForm";
 

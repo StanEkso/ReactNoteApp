@@ -6,7 +6,7 @@ import {
   useLoaderData,
   useNavigate,
 } from "react-router-dom";
-import { deleteNote, getNoteById } from "../../../api/notes";
+import { deleteNote, getNoteById } from "../../../api";
 import { useAuthContext } from "../../../components/authContextProvider/authContextProvider";
 import NoteControls from "../../../components/note/NoteControls";
 import NotePageSkeleton from "../../../components/skeletons/NotePageSkeleton";

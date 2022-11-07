@@ -35,6 +35,7 @@ const FormControl: FC<ControlProps> = ({
           type={type}
           name={name}
           value={value}
+          autoComplete={name}
           onChange={onChange}
           placeholder={placeholder}
           className="py-1 px-2 border-2 rounded-sm "

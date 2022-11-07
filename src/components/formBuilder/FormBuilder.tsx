@@ -17,7 +17,7 @@ const FormBuilder: FC<FormBuilderOptions> = ({ onSumbit, controls }) => {
   const handleSumbit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
-      onSumbit(payload).catch((e) => setError(e));
+      onSumbit(payload).catch((e) => setError(e.message));
     },
     [onSumbit, payload, setError]
   );

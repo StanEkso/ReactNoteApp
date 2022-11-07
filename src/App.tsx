@@ -9,10 +9,7 @@ import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import NotFoundPage, { NotFoundRedirect } from "./pages/404";
 import AboutPage from "./pages/about/page";
 import LoginPage from "./pages/login/page";
-import CreateNote from "./pages/notes/create/page";
-import NotesPage from "./pages/notes/page";
-import EditNotePage from "./pages/notes/[id]/edit/page";
-import NotePage, { loader as noteLoader } from "./pages/notes/[id]/page";
+import { notesRoutes } from "./pages/notes/router";
 import RegisterPage from "./pages/register/page";
 const router = createBrowserRouter([
   {
@@ -32,26 +29,7 @@ const router = createBrowserRouter([
       {
         path: "notes/",
         errorElement: <NotFoundRedirect />,
-        children: [
-          {
-            path: "",
-            element: <NotesPage />,
-          },
-          {
-            path: "create/",
-            element: <CreateNote />,
-          },
-          {
-            path: ":id/edit/",
-            element: <EditNotePage />,
-            loader: noteLoader,
-          },
-          {
-            path: ":id/",
-            element: <NotePage />,
-            loader: noteLoader,
-          },
-        ],
+        children: notesRoutes,
       },
     ],
   },
@@ -64,11 +42,11 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/login",
+        path: "login",
         element: <LoginPage />,
       },
       {
-        path: "/register",
+        path: "register",
         element: <RegisterPage />,
       },
     ],

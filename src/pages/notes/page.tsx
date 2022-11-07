@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 import { Await, Link, useNavigate } from "react-router-dom";
-import { deleteNote, getNotes } from "../../api/notes";
+import { deleteNote, getNotes } from "../../api";
 import { useAuthContext } from "../../components/authContextProvider/authContextProvider";
-import NoteElement from "../../components/note/Note";
+import NoteList from "../../components/note/NoteList";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
 import NoteSkeleton from "../../components/skeletons/NoteSkeleton";
 import { Note } from "../../types/note";
@@ -27,16 +27,11 @@ const NotesPage = () => {
       <Suspense fallback={<ListSkeleton element={NoteSkeleton} length={5} />}>
         <Await resolve={getNotes(user?.id || 0)}>
           {(notes: Note[]) => (
-            <div className="flex flex-col max-w-full gap-3">
-              {notes.map((note) => (
-                <NoteElement
-                  key={note.id}
-                  {...note}
-                  onEdit={() => handleChange(note.id)}
-                  onDelete={() => handleDelete(note.id)}
-                />
-              ))}
-            </div>
+            <NoteList
+              notes={notes}
+              onEdit={handleChange}
+              onDelete={handleDelete}
+            />
           )}
         </Await>
       </Suspense>

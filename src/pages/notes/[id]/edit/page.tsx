@@ -6,7 +6,7 @@ import {
   useLoaderData,
   useNavigate,
 } from "react-router-dom";
-import { getNoteById, updateNode } from "../../../../api/notes";
+import { updateNode, getNoteById } from "../../../../api";
 import { useAuthContext } from "../../../../components/authContextProvider/authContextProvider";
 import FormBuilder from "../../../../components/formBuilder/FormBuilder";
 import EditNoteSkeleton from "../../../../components/skeletons/EditNoteSkeleton";
@@ -17,9 +17,10 @@ const EditNotePage = () => {
   const navigate = useNavigate();
   const { user } = useAuthContext();
   const fn = useLoaderData() as ReturnType<typeof loader>;
-  const sumbitHandler = (note: Note) => (payload: Record<string, string>) => {
-    return updateNode({ ...note, ...payload }).then(() => navigate(-1));
-  };
+  const sumbitHandler = (note: Note) => (payload: Record<string, string>) =>
+    updateNode({ ...note, ...payload }).then(() =>
+      navigate(`/notes/${note.id}`)
+    );
   return (
     <div className="flex flex-col gap-3">
       <Link
@@ -61,7 +62,7 @@ const EditNotePage = () => {
 export default EditNotePage;
 export const loader = ({ params }: LoaderFunctionArgs) => {
   const id = params.id ? (isNaN(+params.id) ? 0 : +params.id) : 0;
-  const promise = getNoteById(id);
+  const promise: Promise<Note> = getNoteById(id);
   return (userId: number) =>
     promise.then((note) => {
       if (note.userId === userId) return note;

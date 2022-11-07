@@ -14,13 +14,12 @@ export const createUser = (dto: UserCreationDto): Promise<User> => {
   }).then((r) => r.json());
 };
 export const loginUser = (dto: Auth): Promise<User> => {
-  return fetch("http://localhost:5000/users")
+  return fetch(
+    `http://localhost:5000/users?email=${dto.email}&password=${dto.password}`
+  )
     .then((r) => r.json())
     .then((users: User[]) => {
-      const existing = users.find(
-        (u) => u.password === dto.password && u.email === dto.email
-      );
-      if (existing) return existing;
+      if (users.length) return users[0];
       throw new Error("Cannot authorize you!");
     });
 };
