@@ -1,9 +1,8 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import AuthContextProvider from "./components/authContextProvider/authContextProvider";
 import Layout from "./components/layout/Layout";
 import RootLayout from "./components/layout/RootLayout";
-import UnathorizedLayout from "./components/layout/UnathorizedLayout";
 import NonAuthorizedOnly from "./components/privateRoute/NonAuthorizedOnly";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import NotFoundPage, { NotFoundRedirect } from "./pages/404";
@@ -37,7 +36,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <NonAuthorizedOnly>
-        <UnathorizedLayout />
+        <Outlet />
       </NonAuthorizedOnly>
     ),
     children: [

@@ -6,20 +6,6 @@
       "name": "testser",
       "password": "1234",
       "createdAt": "2022-11-04T14:36:10.980Z"
-    },
-    {
-      "email": "email@example.com",
-      "password": "123",
-      "name": "Abobus",
-      "createdAt": "2022-11-06T09:01:40.270Z",
-      "id": 2
-    },
-    {
-      "email": "micha@mail",
-      "password": "12345678",
-      "name": "Michail",
-      "createdAt": "2022-11-06T09:05:20.716Z",
-      "id": 3
     }
   ],
   "notes": [
@@ -36,13 +22,6 @@
       "userId": 1,
       "createdAt": "2022-11-05T18:53:11.247Z",
       "id": 2
-    },
-    {
-      "title": "Third Note With Change Name",
-      "body": "Third Note Text Ahahaha",
-      "userId": 1,
-      "createdAt": "2022-11-06T08:51:38.287Z",
-      "id": 3
     }
   ]
 }

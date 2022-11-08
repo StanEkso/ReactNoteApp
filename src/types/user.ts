@@ -5,3 +5,8 @@ export type User = Auth & {
   name: string;
   createdAt: string;
 };
+export interface UserCreationDto {
+  name: string;
+  email: string;
+  password: string;
+}

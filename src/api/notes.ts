@@ -24,6 +24,12 @@ export const getNoteById = (id: number): Promise<Note> => {
   return fetch(BASE_URL + `/notes/${id}`).then((r) => r.json());
 };
 
+export const getUserNoteById = (userId: number, id: number): Promise<Note> => {
+  return fetch(BASE_URL + `/notes/${id}?userId=${userId}`).then((r) =>
+    r.json()
+  );
+};
+
 export const deleteNote = (id: number): Promise<Note> => {
   return fetch(BASE_URL + "/notes/" + id, {
     method: "DELETE",

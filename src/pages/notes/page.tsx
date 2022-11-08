@@ -15,12 +15,13 @@ const NotesPage = () => {
   };
   const handleDelete = (id: number) => {
     deleteNote(id);
+    navigate("");
   };
   return (
     <div className="flex flex-col gap-3">
       <Link
         to="/notes/create"
-        className="bg-blue-500 text-white text-center py-1 px-2"
+        className="bg-blue-500 text-white text-center py-1 px-2 max-w-xs mx-auto"
       >
         Add new note
       </Link>

@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import {
   Await,
-  Link,
   LoaderFunctionArgs,
   useLoaderData,
   useNavigate,
@@ -9,6 +8,7 @@ import {
 import { updateNode, getNoteById } from "../../../../api";
 import { useAuthContext } from "../../../../components/authContextProvider/authContextProvider";
 import FormBuilder from "../../../../components/formBuilder/FormBuilder";
+import BackButton from "../../../../components/navigationElements/BackButton";
 import EditNoteSkeleton from "../../../../components/skeletons/EditNoteSkeleton";
 import { Note } from "../../../../types/note";
 import { NotFoundRedirect } from "../../../404";
@@ -17,25 +17,20 @@ const EditNotePage = () => {
   const navigate = useNavigate();
   const { user } = useAuthContext();
   const fn = useLoaderData() as ReturnType<typeof loader>;
-  const sumbitHandler = (note: Note) => (payload: Record<string, string>) =>
+  const submitHandler = (note: Note) => (payload: Record<string, string>) =>
     updateNode({ ...note, ...payload }).then(() =>
       navigate(`/notes/${note.id}`)
     );
   return (
     <div className="flex flex-col gap-3">
-      <Link
-        to="/notes"
-        className="bg-blue-500 text-white text-center py-1 px-2 flex max-w-[100px]"
-      >
-        {"<-"} Back
-      </Link>
+      <BackButton />
       <Suspense fallback={<EditNoteSkeleton />}>
-        <Await resolve={fn(user?.id!)} errorElement={<NotFoundRedirect />}>
+        <Await resolve={fn(user?.id || 0)} errorElement={<NotFoundRedirect />}>
           {(note) => (
             <>
               <h3 className="font-bold text-center text-xl">Edit Note</h3>
               <FormBuilder
-                onSumbit={sumbitHandler(note)}
+                onSumbit={submitHandler(note)}
                 controls={[
                   {
                     name: "title",

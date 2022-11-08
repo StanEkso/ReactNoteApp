@@ -1,4 +1,4 @@
-import { User } from "./user";
+import { User, UserCreationDto } from "./user";
 
 export interface Auth {
   email: string;
@@ -10,10 +10,4 @@ export interface AuthUtils {
   login: (user: Auth) => Promise<void>;
   logout: () => void;
   register: (dto: UserCreationDto) => Promise<void>;
-}
-
-export interface UserCreationDto {
-  name: string;
-  email: string;
-  password: string;
 }

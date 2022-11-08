@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../components/authContextProvider/authContextProvider";
 import FormBuilder from "../../components/formBuilder/FormBuilder";
 
@@ -13,12 +13,12 @@ const RegisterPage = () => {
       email: payload.email,
       password: payload.password,
       name: payload.name,
-    }).finally(() => {
+    }).then(() => {
       navigate("/");
     });
   };
   return (
-    <div>
+    <div className="max-w-xl mx-auto flex flex-col gap-2 py-5">
       <h2 className="text-2xl font-bold text-center">Register</h2>
       <FormBuilder
         onSumbit={submitHandler}
@@ -37,7 +37,7 @@ const RegisterPage = () => {
           {
             name: "password",
             type: "password",
-            placeholder: "password",
+            placeholder: "Password",
             required: true,
           },
           {
@@ -48,6 +48,12 @@ const RegisterPage = () => {
           },
         ]}
       />
+      <p className="text-center">
+        Already have an account?{" "}
+        <Link to={"/login"} className="text-blue-600">
+          Login here
+        </Link>{" "}
+      </p>
     </div>
   );
 };
