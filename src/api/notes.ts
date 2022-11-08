@@ -1,55 +1,33 @@
 import { Note } from "../types/note";
-import { BASE_URL } from "./constants";
+import { deleteReq, get, patch, post } from "./methods";
 
 export const getNotes = (userId: number): Promise<Note[]> => {
-  return fetch(
-    BASE_URL + `/users/${userId}/notes?_sort=createdAt&_order=desc`
-  ).then((r) => r.json());
+  return get(`/notes?userId=${userId}`);
 };
 export const createNote = (
   dto: Omit<Note, "id" | "createdAt">
 ): Promise<Note> => {
-  const currentDateString = new Date().toISOString();
-  const noteObject = { ...dto, createdAt: currentDateString };
-  return fetch(BASE_URL + "/notes/", {
-    method: "POST",
-    body: JSON.stringify(noteObject),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((r) => r.json());
+  const noteObject = { ...dto, createdAt: new Date().toISOString() };
+  return post<Note>(`/notes/`, noteObject);
 };
 
 export const getNoteById = (id: number): Promise<Note> => {
-  return fetch(BASE_URL + `/notes/${id}`).then((r) => r.json());
+  return get(`/notes/${id}`);
 };
 
 export const getUserNoteById = (userId: number, id: number): Promise<Note> => {
-  return fetch(BASE_URL + `/notes?userId=${userId}`)
-    .then((r) => r.json())
-    .then((notes: Note[]) => {
-      const existing = notes.find((note) => note.id === id);
-      if (existing) return existing;
-      throw new Error("Not found");
-    });
+  return get<Note[]>(`/notes?userId=${userId}`).then((notes: Note[]) => {
+    const existing = notes.find((note) => note.id === id);
+    if (existing) return existing;
+    throw new Error("Not found");
+  });
 };
 
 export const deleteNote = (id: number): Promise<Note> => {
-  return fetch(BASE_URL + "/notes/" + id, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((r) => r.json());
+  return deleteReq(`/notes/${id}`, "Not Found");
 };
 
 export const updateNode = (dto: Note) => {
   const { id, ...note } = dto;
-  return fetch(BASE_URL + "/notes/" + id, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(note),
-  }).then((r) => r.json());
+  return patch<Note>(`/notes/${id}`, note, "No access");
 };

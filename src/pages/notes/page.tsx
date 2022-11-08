@@ -6,6 +6,7 @@ import NoteList from "../../components/note/NoteList";
 import ListSkeleton from "../../components/skeletons/ListSkeleton";
 import NoteSkeleton from "../../components/skeletons/NoteSkeleton";
 import { Note } from "../../types/note";
+import { NotFoundRedirect } from "../404";
 
 const NotesPage = () => {
   const navigate = useNavigate();
@@ -27,7 +28,10 @@ const NotesPage = () => {
         Add new note
       </Link>
       <Suspense fallback={<ListSkeleton element={NoteSkeleton} length={5} />}>
-        <Await resolve={getNotes(user?.id || 0)}>
+        <Await
+          resolve={getNotes(user?.id || 0)}
+          errorElement={<NotFoundRedirect />}
+        >
           {(notes: Note[]) => (
             <NoteList
               notes={notes}
