@@ -1,5 +1,5 @@
-import { Auth, UserCreationDto } from "../types/auth";
-import { User } from "../types/user";
+import { Auth } from "../types/auth";
+import { User, UserCreationDto } from "../types/user";
 import { BASE_URL } from "./constants";
 
 export const createUser = (dto: UserCreationDto): Promise<User> => {
