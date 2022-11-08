@@ -14,8 +14,9 @@ const NotesPage = () => {
     navigate("/notes/" + id + "/edit");
   };
   const handleDelete = (id: number) => {
-    deleteNote(id);
-    navigate("");
+    deleteNote(id).then(() => {
+      navigate("");
+    });
   };
   return (
     <div className="flex flex-col gap-3">

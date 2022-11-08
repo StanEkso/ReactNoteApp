@@ -25,7 +25,7 @@ const AboutPage = () => {
         </a>
       </p>
       <p>Your account is created at {creationString}</p>
-      <div className="flex gap-2 flex-col flex-wrap max-w-md">
+      <div className="flex gap-2 flex-col flex-wrap max-w-md py-2">
         <Link
           to={"/notes"}
           className="py-1 px-2 border-2 hover:border-blue-500"
@@ -33,7 +33,7 @@ const AboutPage = () => {
           View your notes
         </Link>
         <p
-          className="py-1 px-2 border-2 hover:border-blue-500 text-red-600"
+          className="py-1 px-2 border-2 hover:border-blue-500 text-red-600 cursor-pointer"
           onClick={logout}
         >
           Logout

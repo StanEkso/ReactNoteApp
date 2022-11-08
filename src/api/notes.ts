@@ -25,9 +25,13 @@ export const getNoteById = (id: number): Promise<Note> => {
 };
 
 export const getUserNoteById = (userId: number, id: number): Promise<Note> => {
-  return fetch(BASE_URL + `/notes/${id}?userId=${userId}`).then((r) =>
-    r.json()
-  );
+  return fetch(BASE_URL + `/notes?userId=${userId}`)
+    .then((r) => r.json())
+    .then((notes: Note[]) => {
+      const existing = notes.find((note) => note.id === id);
+      if (existing) return existing;
+      throw new Error("Not found");
+    });
 };
 
 export const deleteNote = (id: number): Promise<Note> => {

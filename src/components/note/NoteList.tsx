@@ -24,6 +24,9 @@ const NoteList: FC<Props> = ({
       {!notes.length && (
         <h4 className="text-center text-xl">There are no notes</h4>
       )}
+      {!!notes.length && (
+        <h4 className="font-bold text-xl">Notes ({notes.length})</h4>
+      )}
       {notes.map((note) => (
         <NoteElement
           key={note.id}

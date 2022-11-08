@@ -6,9 +6,12 @@ import FormBuilder from "../../components/formBuilder/FormBuilder";
 const RegisterPage = () => {
   const navigate = useNavigate();
   const { register } = useAuthContext();
-  const submitHandler = (payload: Record<string, string>) => {
-    if (payload.password !== payload.repeatpassword)
-      return Promise.reject("Passwords should be equal");
+  const submitHandler = (payload: Record<string, string>): Promise<void> => {
+    if (payload.password !== payload.repeatpassword) {
+      return new Promise(() => {
+        throw new Error("Passwords should be equal");
+      });
+    }
     return register({
       email: payload.email,
       password: payload.password,
