@@ -36,7 +36,7 @@ const LoginPage = () => {
       />
       <p className="text-center">
         Don't have an account?{" "}
-        <Link to={"/register"} className="text-blue-600">
+        <Link to={"../register"} className="text-blue-600">
           Register here
         </Link>{" "}
       </p>

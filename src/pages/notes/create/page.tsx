@@ -32,6 +32,7 @@ const CreateNote = () => {
           {
             name: "body",
             placeholder: "Body",
+            customElement: "textarea",
           },
         ]}
       />

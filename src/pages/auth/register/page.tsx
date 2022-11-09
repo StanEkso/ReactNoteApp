@@ -53,9 +53,9 @@ const RegisterPage = () => {
       />
       <p className="text-center">
         Already have an account?{" "}
-        <Link to={"/login"} className="text-blue-600">
+        <Link to={"../login"} className="text-blue-600">
           Login here
-        </Link>{" "}
+        </Link>
       </p>
     </div>
   );

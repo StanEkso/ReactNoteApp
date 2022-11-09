@@ -7,7 +7,7 @@ const LogoutElement = () => {
     logout();
   };
   return (
-    <div className="text-gray-500" onClick={logoutHandler}>
+    <div className="text-gray-500 cursor-pointer" onClick={logoutHandler}>
       Logout
     </div>
   );
