@@ -21,7 +21,7 @@ const NoteElement: FC<Props> = ({
         <Link to={`/notes/${id}`}>
           <h4 className="font-bold text-xl">{title} </h4>
         </Link>
-        <p>{dateFromISOString(createdAt)} </p>
+        <p className="text-gray-500">{dateFromISOString(createdAt)} </p>
       </div>
       <NoteControls onDelete={onDelete} onEdit={onEdit} />
     </div>

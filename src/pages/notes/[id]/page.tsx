@@ -1,4 +1,4 @@
-import React, { Suspense, useCallback } from "react";
+import React, { Suspense, useCallback, useMemo } from "react";
 import {
   Await,
   LoaderFunctionArgs,
@@ -23,21 +23,22 @@ const NotePage = () => {
   const editHandler = useCallback(() => {
     navigate(`/notes/${id}/edit`);
   }, [id, navigate]);
+  const notePromise = useMemo(
+    () => getNoteInfo(user?.id || 0),
+    [getNoteInfo, user?.id]
+  );
   return (
     <div className="flex flex-col gap-3">
       <BackButton />
       <Suspense fallback={<NotePageSkeleton />}>
-        <Await
-          resolve={getNoteInfo(user?.id || 0)}
-          errorElement={<NotFoundRedirect />}
-        >
+        <Await resolve={notePromise} errorElement={<NotFoundRedirect />}>
           {(note) => (
             <>
               <div className="flex gap-1 items-center">
                 <h3 className="font-bold text-center text-xl">{note.title} </h3>
                 <NoteControls onEdit={editHandler} onDelete={deleteHandler} />
               </div>
-              <p>{note.body} </p>
+              <p className="overflow-hidden">{note.body} </p>
             </>
           )}
         </Await>
