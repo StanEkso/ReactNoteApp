@@ -6,13 +6,6 @@
       "name": "testuser",
       "password": "1234",
       "createdAt": "2022-11-04T14:36:10.980Z"
-    },
-    {
-      "email": "newuser@gmail.com",
-      "password": "1234",
-      "name": "Artyom",
-      "createdAt": "2022-11-09T13:44:34.509Z",
-      "id": 2
     }
   ],
   "notes": [
@@ -31,15 +24,15 @@
       "id": 5
     },
     {
-      "title": "2334",
-      "body": "3321123",
+      "title": "My note",
+      "body": "3321123212312312",
       "userId": 1,
       "createdAt": "2022-11-09T13:02:52.212Z",
       "id": 6
     },
     {
-      "title": "My First Note",
-      "body": "123",
+      "title": "My First Note3434",
+      "body": "Note",
       "userId": 2,
       "createdAt": "2022-11-09T13:45:56.571Z",
       "id": 7
