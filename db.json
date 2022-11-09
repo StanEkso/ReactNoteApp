@@ -2,8 +2,8 @@
   "users": [
     {
       "id": 1,
-      "email": "user1@gmail.com",
-      "name": "testser",
+      "email": "testuser@gmail.com",
+      "name": "testuser",
       "password": "1234",
       "createdAt": "2022-11-04T14:36:10.980Z"
     },
@@ -13,13 +13,6 @@
       "name": "Stanislav",
       "createdAt": "2022-11-08T16:41:04.632Z",
       "id": 2
-    },
-    {
-      "email": "micha@mail",
-      "password": "123",
-      "name": "Michail",
-      "createdAt": "2022-11-08T19:46:29.570Z",
-      "id": 3
     }
   ],
   "notes": [
@@ -32,24 +25,17 @@
     },
     {
       "title": "123",
-      "body": "123",
+      "body": "Body",
       "userId": 1,
       "createdAt": "2022-11-08T19:42:08.283Z",
       "id": 4
     },
     {
-      "title": "MyNewSuperMegaNote",
-      "body": "123",
-      "userId": 3,
-      "createdAt": "2022-11-08T19:47:24.994Z",
+      "title": "2",
+      "body": "2",
+      "userId": 1,
+      "createdAt": "2022-11-09T08:09:21.061Z",
       "id": 5
-    },
-    {
-      "title": "MySuperMegaTone",
-      "body": "54",
-      "userId": 3,
-      "createdAt": "2022-11-08T19:48:13.295Z",
-      "id": 6
     }
   ]
 }

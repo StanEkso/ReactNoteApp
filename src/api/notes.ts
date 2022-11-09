@@ -3,7 +3,7 @@ import { getCurrentISO } from "../utils/date";
 import { deleteReq, get, patch, post } from "./methods";
 
 export const getNotes = (userId: number): Promise<Note[]> => {
-  return get(`/notes?userId=${userId}`);
+  return get(`/notes?userId=${userId}&_sort=createdAt&_order=desc`);
 };
 export const createNote = (
   dto: Omit<Note, "id" | "createdAt">

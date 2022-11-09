@@ -27,7 +27,11 @@ const NotesPage = () => {
       >
         Add new note
       </Link>
-      <Suspense fallback={<ListSkeleton element={NoteSkeleton} length={5} />}>
+      <Suspense
+        fallback={
+          <ListSkeleton element={NoteSkeleton} length={5} withTitle={true} />
+        }
+      >
         <Await
           resolve={getNotes(user?.id || 0)}
           errorElement={<NotFoundRedirect />}
