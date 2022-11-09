@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import type { Note } from "../../types/note";
-import dateFromISOString from "../../utils/dateFromISO";
+import { dateFromISOString } from "../../utils/date";
 import NoteControls from "./NoteControls";
 type Props = Note & {
   onEdit?: () => void;

@@ -1,9 +1,10 @@
 import { Auth } from "../types/auth";
 import { User, UserCreationDto } from "../types/user";
+import { getCurrentISO } from "../utils/date";
 import { get, post } from "./methods";
 
 export const createUser = (dto: UserCreationDto): Promise<User> => {
-  const userObject = { ...dto, createdAt: new Date().toISOString() };
+  const userObject = { ...dto, createdAt: getCurrentISO() };
   return post<User>(`/users`, userObject, "Cannot create user");
 };
 export const loginUser = ({ email, password }: Auth): Promise<User> => {

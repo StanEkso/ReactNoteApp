@@ -1,4 +1,5 @@
 import { Note } from "../types/note";
+import { getCurrentISO } from "../utils/date";
 import { deleteReq, get, patch, post } from "./methods";
 
 export const getNotes = (userId: number): Promise<Note[]> => {
@@ -7,7 +8,7 @@ export const getNotes = (userId: number): Promise<Note[]> => {
 export const createNote = (
   dto: Omit<Note, "id" | "createdAt">
 ): Promise<Note> => {
-  const noteObject = { ...dto, createdAt: new Date().toISOString() };
+  const noteObject = { ...dto, createdAt: getCurrentISO() };
   return post<Note>(`/notes/`, noteObject);
 };
 

@@ -1,20 +1,14 @@
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../components/authContextProvider/authContextProvider";
+import { dateFromISOString } from "../../utils/date";
 
 const AboutPage = () => {
   const { user, logout } = useAuthContext();
-  const creationString = useMemo(() => {
-    const date = new Date(user?.createdAt || Date.now());
-    return date.toLocaleDateString("en", {
-      month: "short",
-      day: "2-digit",
-      year: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
-  }, [user]);
+  const creationString = useMemo(
+    () => dateFromISOString(user?.createdAt),
+    [user]
+  );
   return (
     <div>
       <h4 className="text-center text-2xl">Hello, {user?.name}!</h4>
