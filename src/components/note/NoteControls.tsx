@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 
 interface Props {
   onEdit: () => void;
@@ -24,4 +24,4 @@ const NoteControls: FC<Props> = ({ onDelete, onEdit }) => {
   );
 };
 
-export default NoteControls;
+export default memo(NoteControls);

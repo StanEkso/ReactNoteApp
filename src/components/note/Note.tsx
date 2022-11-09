@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { Link } from "react-router-dom";
 import type { Note } from "../../types/note";
 import { dateFromISOString } from "../../utils/date";
@@ -28,4 +28,4 @@ const NoteElement: FC<Props> = ({
   );
 };
 
-export default NoteElement;
+export default memo(NoteElement);

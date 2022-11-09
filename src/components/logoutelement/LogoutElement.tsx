@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useAuthContext } from "../authContextProvider/authContextProvider";
 
 const LogoutElement = () => {
@@ -13,4 +13,4 @@ const LogoutElement = () => {
   );
 };
 
-export default LogoutElement;
+export default memo(LogoutElement);

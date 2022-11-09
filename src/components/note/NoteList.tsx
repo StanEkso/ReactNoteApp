@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { Note } from "../../types/note";
 import NoteElement from "./Note";
 
@@ -39,4 +39,4 @@ const NoteList: FC<Props> = ({
   );
 };
 
-export default NoteList;
+export default memo(NoteList);
