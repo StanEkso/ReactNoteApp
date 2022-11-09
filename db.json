@@ -13,6 +13,13 @@
       "name": "Stanislav",
       "createdAt": "2022-11-08T16:41:04.632Z",
       "id": 2
+    },
+    {
+      "email": "myemail@email.com",
+      "password": "1234",
+      "name": "MyName",
+      "createdAt": "2022-11-09T12:51:01.302Z",
+      "id": 3
     }
   ],
   "notes": [
@@ -32,10 +39,17 @@
     },
     {
       "title": "2",
-      "body": "2",
+      "body": "24444 4431333333313344121333",
       "userId": 1,
       "createdAt": "2022-11-09T08:09:21.061Z",
       "id": 5
+    },
+    {
+      "title": "2334",
+      "body": "",
+      "userId": 1,
+      "createdAt": "2022-11-09T13:02:52.212Z",
+      "id": 6
     }
   ]
 }

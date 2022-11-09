@@ -4,7 +4,7 @@ import { useAuthContext } from "../authContextProvider/authContextProvider";
 
 const PrivateRoute: FC<PropsWithChildren> = ({ children }) => {
   const { user } = useAuthContext();
-  if (!user) return <Navigate to="/login" />;
+  if (!user) return <Navigate to="/auth/login" />;
   return <>{children}</>;
 };
 

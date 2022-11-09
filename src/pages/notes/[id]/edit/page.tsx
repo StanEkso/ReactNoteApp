@@ -1,31 +1,30 @@
 import React, { Suspense } from "react";
-import {
-  Await,
-  LoaderFunctionArgs,
-  useLoaderData,
-  useNavigate,
-} from "react-router-dom";
-import { updateNode, getNoteById } from "../../../../api";
+import { Await, useLoaderData, useNavigate } from "react-router-dom";
+import { updateNode } from "../../../../api";
 import { useAuthContext } from "../../../../components/authContextProvider/authContextProvider";
 import FormBuilder from "../../../../components/formBuilder/FormBuilder";
 import BackButton from "../../../../components/navigationElements/BackButton";
 import EditNoteSkeleton from "../../../../components/skeletons/EditNoteSkeleton";
 import { Note } from "../../../../types/note";
 import { NotFoundRedirect } from "../../../404";
+import { loader as noteLoader } from "../page";
 
 const EditNotePage = () => {
   const navigate = useNavigate();
   const { user } = useAuthContext();
-  const fn = useLoaderData() as ReturnType<typeof loader>;
+  const { getNoteInfo } = useLoaderData() as ReturnType<typeof noteLoader>;
   const submitHandler = (note: Note) => (payload: Record<string, string>) =>
-    updateNode({ ...note, ...payload }).then(() =>
+    updateNode({ ...note, ...payload }).then((note) =>
       navigate(`/notes/${note.id}`)
     );
   return (
     <div className="flex flex-col gap-3">
       <BackButton />
       <Suspense fallback={<EditNoteSkeleton />}>
-        <Await resolve={fn(user?.id || 0)} errorElement={<NotFoundRedirect />}>
+        <Await
+          resolve={getNoteInfo(user?.id || 0)}
+          errorElement={<NotFoundRedirect />}
+        >
           {(note) => (
             <>
               <h3 className="font-bold text-center text-xl">Edit Note</h3>
@@ -55,12 +54,3 @@ const EditNotePage = () => {
 };
 
 export default EditNotePage;
-export const loader = ({ params }: LoaderFunctionArgs) => {
-  const id = params.id ? (isNaN(+params.id) ? 0 : +params.id) : 0;
-  const promise: Promise<Note> = getNoteById(id);
-  return (userId: number) =>
-    promise.then((note) => {
-      if (note.userId === userId) return note;
-      throw new Error("Access Denied");
-    });
-};

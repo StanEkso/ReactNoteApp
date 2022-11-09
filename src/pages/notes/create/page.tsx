@@ -2,16 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { createNote } from "../../../api";
 import { useAuthContext } from "../../../components/authContextProvider/authContextProvider";
+import FormBuilder from "../../../components/formBuilder/FormBuilder";
 import BackButton from "../../../components/navigationElements/BackButton";
-import { useForm } from "../../../hooks/useForm";
 
 const CreateNote = () => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
-  const { payload, changeHandler } = useForm();
-  const sumbitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    createNote({
+  const handleSubmit = (payload: Record<string, string>) => {
+    return createNote({
       title: payload.title,
       body: payload.body,
       userId: user?.id || 0,
@@ -23,27 +21,20 @@ const CreateNote = () => {
     <div className="flex flex-col gap-3">
       <BackButton />
       <h3 className="font-bold text-center text-xl">Create new Note</h3>
-      <form className="grid gap-1" onSubmit={sumbitHandler}>
-        <input
-          type="text"
-          className="py-1 px-2 border-2 rounded-sm invalid:border-red-600"
-          name="title"
-          placeholder="Title"
-          onChange={changeHandler}
-        />
-        <textarea
-          name="body"
-          onChange={changeHandler}
-          className="py-1 px-2 border-2 rounded-sm invalid:border-red-600"
-          placeholder="Note body.."
-        ></textarea>
-        <button
-          type="submit"
-          className="bg-blue-600 text-white rounded-sm py-1"
-        >
-          Create
-        </button>
-      </form>
+      <FormBuilder
+        onSumbit={handleSubmit}
+        controls={[
+          {
+            name: "title",
+            placeholder: "Title",
+            required: true,
+          },
+          {
+            name: "body",
+            placeholder: "Body",
+          },
+        ]}
+      />
     </div>
   );
 };

@@ -7,9 +7,8 @@ import NonAuthorizedOnly from "./components/privateRoute/NonAuthorizedOnly";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import NotFoundPage, { NotFoundRedirect } from "./pages/404";
 import AboutPage from "./pages/about/page";
-import LoginPage from "./pages/login/page";
+import { authRoutes } from "./pages/auth/router";
 import { notesRoutes } from "./pages/notes/router";
-import RegisterPage from "./pages/register/page";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,22 +32,13 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/",
+    path: "/auth",
     element: (
       <NonAuthorizedOnly>
         <Outlet />
       </NonAuthorizedOnly>
     ),
-    children: [
-      {
-        path: "login",
-        element: <LoginPage />,
-      },
-      {
-        path: "register",
-        element: <RegisterPage />,
-      },
-    ],
+    children: authRoutes,
   },
   {
     path: "/404",

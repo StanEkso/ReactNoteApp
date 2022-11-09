@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthContext } from "../../components/authContextProvider/authContextProvider";
-import FormBuilder from "../../components/formBuilder/FormBuilder";
+import { useAuthContext } from "../../../components/authContextProvider/authContextProvider";
+import FormBuilder from "../../../components/formBuilder/FormBuilder";
 
 const LoginPage = () => {
   const navigate = useNavigate();

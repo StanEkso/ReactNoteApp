@@ -15,12 +15,15 @@ import { NotFoundRedirect } from "../../404";
 const NotePage = () => {
   const navigate = useNavigate();
   const { user } = useAuthContext();
-  const fn = useLoaderData() as ReturnType<typeof loader>;
+  const { getNoteInfo } = useLoaderData() as ReturnType<typeof loader>;
   return (
     <div className="flex flex-col gap-3">
       <BackButton />
       <Suspense fallback={<NotePageSkeleton />}>
-        <Await resolve={fn(user?.id || 0)} errorElement={<NotFoundRedirect />}>
+        <Await
+          resolve={getNoteInfo(user?.id || 0)}
+          errorElement={<NotFoundRedirect />}
+        >
           {(note) => (
             <>
               <div className="flex gap-1 items-center">
@@ -45,5 +48,7 @@ const NotePage = () => {
 export default NotePage;
 export const loader = ({ params }: LoaderFunctionArgs) => {
   const id = params.id ? (isNaN(+params.id) ? 0 : +params.id) : 0;
-  return (userId: number) => getUserNoteById(userId, id);
+  return {
+    getNoteInfo: (userId: number) => getUserNoteById(userId, id),
+  };
 };

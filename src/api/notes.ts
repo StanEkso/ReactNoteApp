@@ -24,7 +24,7 @@ export const getUserNoteById = (userId: number, id: number): Promise<Note> => {
 export const deleteNote = (id: number): Promise<Note> =>
   deleteReq(`/notes/${id}`, "Not Found");
 
-export const updateNode = (dto: Note) => {
+export const updateNode = (dto: Partial<Note> & { id: number }) => {
   const { id, ...note } = dto;
   return patch<Note>(`/notes/${id}`, note, "No access");
 };
