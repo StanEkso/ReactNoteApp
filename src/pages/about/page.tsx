@@ -11,7 +11,7 @@ const AboutPage = () => {
   );
   return (
     <div>
-      <h4 className="text-center text-2xl">Hello, {user?.name}!</h4>
+      <h4 className="text-2xl">Hello, {user?.name}!</h4>
       <p className="text-xl">
         Your email is{" "}
         <a href={`mailto:${user?.email}`} className="text-blue-500">

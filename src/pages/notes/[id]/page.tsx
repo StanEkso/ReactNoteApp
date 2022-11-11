@@ -35,7 +35,9 @@ const NotePage = () => {
           {(note) => (
             <>
               <div className="flex gap-1 items-center">
-                <h3 className="font-bold text-center text-xl">{note.title} </h3>
+                <h3 className="font-bold text-center text-2xl">
+                  {note.title}{" "}
+                </h3>
                 <NoteControls onEdit={editHandler} onDelete={deleteHandler} />
               </div>
               <p className="overflow-hidden">{note.body} </p>
