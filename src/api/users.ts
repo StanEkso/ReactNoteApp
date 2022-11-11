@@ -7,9 +7,7 @@ export const createUser = (dto: UserCreationDto): Promise<User> => {
   return post<User>(`/users`, userObject, "Cannot create user");
 };
 export const loginUser = ({ email, password }: Auth): Promise<User> =>
-  get<User[]>(`/users?email=${email}&password=${password}`).then(
-    (users: User[]) => {
-      if (users.length === 1) return users[0];
-      throw new Error("Cannot authorize you!");
-    }
-  );
+  get<User[]>(`/users?email=${email}&password=${password}`).then((users) => {
+    if (users.length === 1) return users[0];
+    throw new Error("Cannot authorize you!");
+  });

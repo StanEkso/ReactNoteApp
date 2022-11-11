@@ -5,6 +5,7 @@ This project is example of Notes Application using React.
 ## Preview on Desktop
 
 ![Desktop Preview, Main Page](./preview/preview_main.png "Desktop Main Page")
+![Desktop Preview, Notes Page](./preview/preview_notes.png "Desktop Notes Page")
 
 ## Technologies
 
