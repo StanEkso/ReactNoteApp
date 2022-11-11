@@ -32,11 +32,11 @@ const EditNotePage = () => {
   return (
     <div className="flex flex-col gap-3">
       <BackButton />
+      <h3 className="font-bold text-center text-2xl">Edit Note</h3>
       <Suspense fallback={<EditNoteSkeleton />}>
         <Await resolve={notePromise} errorElement={<NotFoundRedirect />}>
           {(note) => (
             <>
-              <h3 className="font-bold text-center text-xl">Edit Note</h3>
               <FormErrorBoundary onSubmit={submitHandler} error={payload.error}>
                 <StyledInput
                   name="title"

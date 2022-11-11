@@ -7,7 +7,7 @@ const StyledTextarea: FC<Props> = ({ className, ...props }) => {
     <textarea
       {...props}
       rows={5}
-      className={["py-1 px-2 border-2 rounded-sm "].join("")}
+      className={["py-1 px-2 border-2 rounded-sm", className].join("")}
     />
   );
 };
