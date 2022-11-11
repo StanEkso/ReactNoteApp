@@ -1,5 +1,4 @@
-import { Auth } from "../types/auth";
-import { User, UserCreationDto } from "../types/user";
+import { Auth, User, UserCreationDto } from "../types/auth";
 import { getCurrentISO } from "../utils/date";
 import { get, post } from "./methods";
 

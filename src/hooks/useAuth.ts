@@ -1,6 +1,5 @@
-import { AuthUtils } from "../types/auth";
+import { AuthUtils, User } from "../types/auth";
 import { useState, useMemo } from "react";
-import { User } from "../types/user";
 import { createUser, loginUser } from "../api";
 export function useAuth(): AuthUtils {
   const [user, setUser] = useState<User | null>(() => {
